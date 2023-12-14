@@ -1,0 +1,286 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/qs/app";
+
+$sm: 48 * 16px;
+$md: 64 * 16px;
+$lg: 80 * 16px;
+$xlg: 90 * 16px;
+$positive: #1cc994;
+$negative: #f16448;
+$qlikRed: #dc423f;
+$qlikGreen: #009845;
+$buttonLine: #dee6ed;
+$red: #f16448;
+$green: #1cc994;
+
+body {
+  background-color: #EEF0F5;
+  margin: 0;
+  overflow: hidden;
+  font-family: "San Francisco Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  top: 0;
+  display: flex;
+  position: static;
+  padding: 15px 20px;
+  align-items: center;
+  background-color: #2B53A6;
+  justify-content: space-between;
+  .title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+}
+
+.header-link {
+  color: #ffffff;
+  border: none;
+  margin-right: 40px;
+  text-decoration: none;
+
+  &.is-active {
+    border-bottom: 1px solid #fff;
+  }
+}
+
+.img {
+  filter: brightness(0) invert(1);
+}
+
+.container-body {
+  min-height: calc(var(--vh, 0.83vh) * 100);
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px 40px;
+}
+
+.title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: larger;
+  color: #2B53A6;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.filterpanes-bar .vis-container {
+  height: 60px;
+  min-height: 60px;
+  position: relative;
+}
+
+.filterpanes-bar.text-image .vis-container {
+  header {
+    padding: 0;
+
+    h1 {
+      font-weight: 500;
+      font-size: 12px !important; // Needed to override qlik sense inline styles
+      margin-top: 5px;
+      margin-bottom: 5px;
+      line-height: 1.15;
+      text-align: center;
+
+      .qv-object-title-text {
+        width: 100%;
+      }
+    }
+  }
+
+  .qv-object-content font {
+    font-size: 16px;
+  }
+
+  .qv-object-text-image .qv-media-tool-html {
+    overflow-x: visible;
+  }
+}
+
+.filterpanes-bar {
+  &:not(.custom-layout) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+
+    @media (max-width: $md) {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.filterpanes-bar.filterpanes {
+  padding-bottom: 0;
+}
+
+.filterpanes-bar.filterpanes {
+  margin-bottom: 0;
+}
+
+.filterpanes {
+  flex: 1;
+  border-radius: 1px;
+  text-align: center;
+  color: #3e4654;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  box-sizing: border-box;
+  justify-content: center;
+
+  @media (max-width: $md) {
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  &.is-danger {
+    background: $negative;
+    color: #fff;
+  }
+}
+
+// TOOLTIPS
+// Capability API Tooltip override
+.qv-tooltip,
+.qvt-chart-tooltip {
+  .qv-chart-tooltip-inner .qv-chart-tooltip-content {
+
+    td,
+    th {
+      border: none;
+      color: inherit;
+    }
+  }
+}
+
+#la-vie-tooltip .pic-tooltip .pic-tooltip-content {
+
+  td,
+  th,
+  tr {
+    border: none;
+    color: inherit;
+  }
+}
+
+// Capability API Selection toolbar override
+.qv-object-wrapper {
+
+  .qv-selection-toolbar,
+  .qvt-selection-toolbar {
+    height: 32px;
+    top: -24px !important; // Override inline styles
+    width: 100% !important; // Override inline styles
+    left: 0px !important; // Override inline styles
+
+    &.sel-toolbar-card {
+      border: none;
+      background-color: transparent;
+
+      .sel-toolbar-list-item-hide-more,
+      .sel-toolbar-list-item-locked,
+      .sel-toolbar-list-item-close,
+      .sel-toolbar-list-item-optionslist,
+      .sel-toolbar-separator {
+        display: none;
+      }
+
+      .sel-toolbar-confirm,
+      .sel-toolbar-cancel {
+        background-color: white;
+        box-shadow: none;
+      }
+
+      .sel-toolbar-btn {
+        color: #595959;
+      }
+    }
+
+    .sel-toolbar-list {
+      border-spacing: 0;
+
+      td {
+        border: none;
+      }
+
+      .sel-toolbar-list-item {
+        width: 32px;
+
+        .sel-toolbar-btn {
+          width: 32px;
+          height: 32px;
+
+          &.sel-toolbar-cancel {
+            background-color: $qlikRed;
+            color: white;
+            border: 1px solid $buttonLine;
+
+            &.menu-active {
+              background-color: $red;
+              color: white;
+            }
+          }
+
+          &.sel-toolbar-confirm {
+            background-color: $qlikGreen;
+            color: white;
+            border: 1px solid $buttonLine;
+
+            &.menu-active {
+              background-color: $green;
+              color: white;
+            }
+          }
+
+          &[disabled] {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+}
+
+.filterpane {
+  .qv-collapsed-listbox {
+    border: 3px solid #2B53A6;
+
+    &.interactive:hover {
+      border: 3px solid #2B53A6;
+    }
+  }
+
+  .qv-collapsed-listbox .qv-filterpane .qv-filterpane-collapsed:first-child,
+  .qv-filterpane .qv-filterpane-expanded:first-child {
+    margin-top: 5px;
+  }
+}
+
+.qv-collapsed-listbox {
+  justify-content: center !important;
+  align-items: center !important;
+}
